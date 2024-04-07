@@ -1,25 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Public page</title>
 </head>
 <body>
 <p class="public_img">
-    <img src="../static/public.png" height="200" width="350" alt="public"/>
+    <img th:attr="src=@{/images/public.png},alt='top'"/>
 </p>
-
 <style>
     .public_img {
         text-align: center;
     }</style>
+
 <style>
-    body{
-        background-color: aliceblue;
+    body {
+        background-color: #88d960;
     }
 </style>
-
-
 
 
 </body>

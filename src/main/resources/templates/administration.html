@@ -1,25 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Administration page</title>
 </head>
 <body>
 <p class="topsecret_image">
-    <img src="../static/topsecret.png" height="200" width="350" alt="secret"/>
+    <img th:attr="src=@{/images/topsecret.png},alt='top'" width="500" height="800"/>
 </p>
-
 <style>
     .topsecret_image {
         text-align: center;
     }</style>
+
 <style>
-    body{
+    body {
         background-color: darkcyan;
     }
 </style>
-
-
 
 
 </body>
