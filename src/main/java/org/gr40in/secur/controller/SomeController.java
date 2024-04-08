@@ -12,6 +12,11 @@ public class SomeController {
 
     private final UserService userService;
 
+    @GetMapping
+    public String homePage() {
+        return "home";
+    }
+
     @GetMapping("login")
     public String loginPage() {
         return "login";

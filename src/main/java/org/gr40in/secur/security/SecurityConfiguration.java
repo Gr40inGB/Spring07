@@ -34,13 +34,18 @@ public class SecurityConfiguration {
         return
                 http.csrf(AbstractHttpConfigurer::disable)
                         .authorizeHttpRequests(auth -> auth
-                                .requestMatchers("secret*", "users*").hasAuthority("ADMIN")
-                                .requestMatchers("public*").authenticated()
-                                .requestMatchers("login*").permitAll()
-                                .requestMatchers("*images*").permitAll()
-                                .anyRequest().permitAll()
+                                        .requestMatchers("secret*", "users*").hasAuthority("ADMIN")
+                                        .requestMatchers("public*").permitAll()
+//                                .requestMatchers("login*").permitAll()
+                                        .requestMatchers("*images*").permitAll()
+
+                                        .anyRequest().permitAll()
                         )
-                        .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
+
+                        .formLogin(form -> form
+                                .loginPage("/login")
+                                .permitAll()
+                                .defaultSuccessUrl("/users", true))
                         .build();
     }
 
