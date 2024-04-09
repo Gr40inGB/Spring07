@@ -50,30 +50,30 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    @EventListener(ContextRefreshedEvent.class)
-    private void createUsers() {
-
-        if (userRepository.getUserByName("user").isEmpty()) {
-            var user = User.builder()
-                    .name("user")
-                    .email("User@mail.com")
-                    .password(passwordEncoder.encode("12345"))
-                    .role(Role.USER)
-                    .enabled(true)
-                    .build();
-            userRepository.save(user);
-        }
-        if (userRepository.getUserByName("root").isEmpty()) {
-
-            var root = User.builder()
-                    .name("root")
-                    .email("Root@mail.com")
-                    .password(passwordEncoder.encode("godMode"))
-                    .role(Role.ADMIN)
-                    .enabled(true)
-                    .build();
-            userRepository.save(root);
-        }
-
-    }
+//    @EventListener(ContextRefreshedEvent.class)
+//    private void createUsers() {
+//
+//        if (userRepository.getUserByName("user").isEmpty()) {
+//            var user = User.builder()
+//                    .name("user")
+//                    .email("User@mail.com")
+//                    .password(passwordEncoder.encode("12345"))
+//                    .role(Role.USER)
+//                    .enabled(true)
+//                    .build();
+//            userRepository.save(user);
+//        }
+//        if (userRepository.getUserByName("root").isEmpty()) {
+//
+//            var root = User.builder()
+//                    .name("root")
+//                    .email("Root@mail.com")
+//                    .password(passwordEncoder.encode("godMode"))
+//                    .role(Role.ADMIN)
+//                    .enabled(true)
+//                    .build();
+//            userRepository.save(root);
+//        }
+//
+//    }
 }
