@@ -1,8 +1,11 @@
 package org.gr40in.secur.security;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.CustomAutowireConfigurer;
+import org.springframework.boot.autoconfigure.security.oauth2.server.servlet.OAuth2AuthorizationServerAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -11,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.oauth2.client.CommonOAuth2Provider;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -30,7 +34,10 @@ public class SecurityConfiguration {
     private final AppUserDetailsService appUserDetailsService;
 
     @Bean
+//    @Order(1)
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        OAuth2AuthorizationServerAutoConfiguration
+//        http.getConfigurer(OAuth2AuthorizationServerAutoConfiguration)
         return
                 http.csrf(AbstractHttpConfigurer::disable)
                         .authorizeHttpRequests(auth -> auth
@@ -38,7 +45,6 @@ public class SecurityConfiguration {
                                         .requestMatchers("public*").permitAll()
 //                                .requestMatchers("login*").permitAll()
                                         .requestMatchers("*images*").permitAll()
-
                                         .anyRequest().permitAll()
                         )
 
@@ -46,6 +52,7 @@ public class SecurityConfiguration {
                                 .loginPage("/login")
                                 .permitAll()
                                 .defaultSuccessUrl("/users", true))
+//                        .oauth2Login()
                         .build();
     }
 

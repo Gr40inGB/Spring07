@@ -27,7 +27,7 @@
     </tbody>
 </table>
 
-<a class="type-name-link" th:href="@{logout}">Logout</a><br>
+<div th:insert="~{fragment::logout}"></div>
 <a th:href="@{public}">public</a><br>
 <a th:href="@{secret}">secret</a>
 </body>

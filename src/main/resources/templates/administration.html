@@ -6,7 +6,7 @@
 </head>
 <body>
 <p class="topsecret_image">
-    <img th:attr="src=@{/images/topsecret.png},alt='top'" width="500" height="800"/>
+    <img th:attr="src=@{/images/topsecret.png},alt='top'" width="200" height="400"/>
 </p>
 <style>
     .topsecret_image {
@@ -18,6 +18,10 @@
         background-color: darkcyan;
     }
 </style>
+
+<a th:href="@{public}">public</a><br>
+
+<div th:insert="~{fragment::logout}"></div>
 
 
 </body>
